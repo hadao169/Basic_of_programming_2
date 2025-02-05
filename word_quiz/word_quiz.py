@@ -1,17 +1,9 @@
 import random
-
-finnish_queries = {
-    "Hello": "What does 'Hei' mean in English?",
-    "Thank you": "What is the English translation of 'Kiitos'?",
-    "Love": "What does 'Rakkaus' translate to in English?",
-    "Friend": "What is the meaning of 'Ystävä' in English?",
-    "House": "What is the English word for 'Talo'?",
-    "Home": "How do you say 'Koti' in English?",
-    "School": "What does 'Koulu' mean in English?",
-    "Water": "What is the English translation of 'Vesi'?",
-    "Sun": "How do you translate 'Aurinko' to English?",
-    "Book": "What does 'Kirja' mean in English?"
-}
+import json
+f1 = open("word_quiz/englishwords.json")
+f2 = open("word_quiz/finnishwords.json")
+english_words = json.load(f1)
+finnish_words = json.load(f2)
 
 def word_quiz(quiz: dict):
     point = 0
@@ -37,4 +29,11 @@ def word_quiz(quiz: dict):
     elif(new_round.casefold() == "n"):
       return
 
-word_quiz(finnish_queries)
+if __name__=="__main__":
+    language = input("Choose the language you want to play (e/f): ")
+    if(language.casefold() == 'f'):
+        word_quiz(finnish_words)
+    elif(language.casefold() == 'e'):
+        word_quiz(english_words)
+    else:
+        print("Invalid language")
